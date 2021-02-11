@@ -62,3 +62,5 @@ type User struct {
 - Table and column name converted to camel case.
 - Unsigned integer types mapped uint.
 - Nullable column mapped pointer.
+- Wildcard for table name is available. (Get all tables by `-t %`)
+- Struct is a SINGULAR name of table name.

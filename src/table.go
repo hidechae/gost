@@ -5,6 +5,7 @@ import (
 	"strings"
 	"time"
 
+	pluralize "github.com/gertd/go-pluralize"
 	"github.com/iancoleman/strcase"
 )
 
@@ -35,6 +36,11 @@ type Table struct {
 	Columns []Column `gorm:"foreignKey:TableName;references:TableName"`
 }
 
+func (t *Table) GetSingularTableName() string {
+	plu := pluralize.NewClient()
+	return plu.Singular(t.TableName)
+}
+
 func (t *Table) GetDefinition() (string, error) {
 	columnDefinitions := make([]string, 0, len(t.Columns))
 	for _, c := range t.Columns {
@@ -46,7 +52,7 @@ func (t *Table) GetDefinition() (string, error) {
 	}
 	return fmt.Sprintf(
 		"type %s struct {\n\t%s\n}",
-		strcase.ToCamel(t.TableName),
+		strcase.ToCamel(t.GetSingularTableName()),
 		strings.Join(columnDefinitions, "\n\t"),
 	), nil
 }
