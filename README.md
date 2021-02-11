@@ -6,7 +6,7 @@ Generate golang struct definitions from mysql table schema.
 
 Run
 
-```
+```sh
 go install github.com/hidechae/gost
 ```
 
