@@ -32,7 +32,7 @@ Flags:
 
 For example, following table exists.
 ```sql
-> desc user;
+> desc users;
 +------------+------------------+------+-----+-------------------+-----------------------------+
 | Field      | Type             | Null | Key | Default           | Extra                       |
 +------------+------------------+------+-----+-------------------+-----------------------------+
@@ -46,7 +46,7 @@ For example, following table exists.
 
 gost generate struct definition from table schema.
 ```go
-$ gost -uroot -h127.0.0.1 -P3306 -d test -t user
+$ gost -uroot -h127.0.0.1 -P3306 -d test -t users
 type User struct {
         Id uint
         Email string
