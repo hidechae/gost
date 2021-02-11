@@ -12,7 +12,7 @@ go install github.com/hidechae/gost
 
 # Usage
 
-```
+```sh
 $ gost -h
 Generate golang struct definitions from MySQL table schema.
 
@@ -31,7 +31,7 @@ Flags:
 ```
 
 For example, following table exists.
-```
+```sql
 > desc user;
 +------------+------------------+------+-----+-------------------+-----------------------------+
 | Field      | Type             | Null | Key | Default           | Extra                       |
@@ -45,7 +45,7 @@ For example, following table exists.
 ```
 
 gost generate struct definition from table schema.
-```
+```go
 $ gost -uroot -h127.0.0.1 -P3306 -d test -t user
 type User struct {
         Id uint
