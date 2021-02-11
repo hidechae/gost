@@ -11,7 +11,7 @@ import (
 var (
 	rootCmd = &cobra.Command{
 		Use:   "gost -u root --host 127.0.0.1 -P 3306 -d test_db -t suffix_%",
-		Short: "Create golang struct definitions from MySQL table schema.",
+		Short: "Generate golang struct definitions from MySQL table schema.",
 		Run: func(cmd *cobra.Command, args []string) {
 			c := newMySQLConfig()
 			h, err := src.NewGormHandler(c, false)
