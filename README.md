@@ -46,7 +46,7 @@ For example, following table exists.
 
 gost generate struct definition from table schema.
 ```go
-$ gost -uroot -h127.0.0.1 -P3306 -d test -t users
+$ gost -u root --host 127.0.0.1 -P 3306 -d test_db -t users
 type User struct {
         Id uint
         Email string
