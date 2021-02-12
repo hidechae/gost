@@ -48,7 +48,7 @@ gost generate struct definition from table schema.
 ```go
 $ gost -u root --host 127.0.0.1 -P 3306 -d test_db -t users
 type User struct {
-        Id uint
+        ID uint
         Email string
         Name *string
         Gender int8

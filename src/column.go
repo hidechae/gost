@@ -31,6 +31,12 @@ type Column struct {
 	ColumnComment          string  `gorm:"column:COLUMN_COMMENT"`
 }
 
+func (c *Column) GetColumnName() string {
+	camelName := strcase.ToCamel(c.ColumnName)
+	re := regexp.MustCompile("Id$")
+	return re.ReplaceAllString(camelName, "ID")
+}
+
 func (c *Column) IsUnsigned() bool {
 	b, _ := regexp.MatchString(`^.*unsigned$`, c.ColumnType)
 	return b
@@ -43,7 +49,7 @@ func (c *Column) GetDefinition() (string, error) {
 	}
 	return fmt.Sprintf(
 		"%s %s",
-		strcase.ToCamel(c.ColumnName),
+		c.GetColumnName(),
 		dataType,
 	), nil
 }
