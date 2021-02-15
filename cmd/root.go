@@ -48,7 +48,7 @@ func init() {
 	rootCmd.PersistentFlags().StringP("password", "p", "", "Password")
 	rootCmd.PersistentFlags().StringP("database", "d", "", "Database")
 	rootCmd.PersistentFlags().StringP("encoding", "", "utf8mb4", "Encoding")
-	rootCmd.PersistentFlags().StringP("table", "t", "", "table name")
+	rootCmd.PersistentFlags().StringP("table", "t", "%", "table name")
 
 	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
 	viper.BindPFlag("host", rootCmd.PersistentFlags().Lookup("host"))

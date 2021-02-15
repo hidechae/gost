@@ -62,9 +62,7 @@ func (c *Column) GetGolangDataType() (string, error) {
 		t = "int8"
 	case "smallint":
 		t = "int16"
-	case "mediumint":
-		fallthrough
-	case "int":
+	case "mediumint", "int":
 		t = "int"
 	case "bigint":
 		t = "int64"
@@ -80,19 +78,11 @@ func (c *Column) GetGolangDataType() (string, error) {
 		t = "decimal.Decimal /* TODO */"
 
 	// text
-	case "varchar":
-		fallthrough
-	case "text":
-		fallthrough
-	case "longtext":
+	case "varchar", "text", "longtext":
 		t = "string"
 
 	// time
-	case "date":
-		fallthrough
-	case "datetime":
-		fallthrough
-	case "timestamp":
+	case "date", "datetime", "timestamp":
 		t = "time.Time"
 
 	default:
