@@ -20,25 +20,16 @@ var (
 				return
 			}
 			c := newMySQLConfig(flags)
-			h, err := src.NewGormHandler(c, false)
+			db := flags.Database
+			tableHint := flags.Table
+
+			tables, err := src.Parse(c, db, tableHint)
 			if err != nil {
 				cobra.CheckErr(err)
 			}
 
-			db := flags.Database
-			table := flags.Table
-			var tables []src.Table
-			h.Preload("Columns", fmt.Sprintf("table_schema = '%s'", db)).
-				Where(fmt.Sprintf("table_schema = '%s' and table_name like '%s'", db, table)).
-				Find(&tables)
-
-			for _, table := range tables {
-				r, err := table.GetDefinition()
-				if err != nil {
-					cobra.CheckErr(err)
-				}
-				fmt.Println(r + "\n")
-			}
+			r := src.GetStructDefinitionString(tables)
+			fmt.Println(r)
 		},
 	}
 )

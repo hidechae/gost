@@ -1,0 +1,49 @@
+name: test
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - "**"
+jobs:
+  test:
+    name: Test with Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.22.1'
+      - name: Check out code
+        uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        id: cache-go
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Install dependencies
+        if: steps.cache-go.outputs.cache-hit != 'true'
+        run: |
+          go mod download
+      - name: Set up databases
+        run: |
+          docker-compose up -d
+          docker-compose --profile dockerize run --rm dockerize dockerize -wait tcp://mysql:3306 -timeout 60s
+        env:
+          TZ: Asia/Tokyo
+      - name: Run unit tests
+        run: |
+          go test -p 1 -shuffle=on -race -coverpkg=./... -coverprofile=coverage.txt -covermode=atomic ./...
+        env:
+          TZ: Asia/Tokyo
+          BUILD_MODE: test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: hidechae/gost
