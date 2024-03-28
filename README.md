@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/hidechae/gost/graph/badge.svg?token=ACF0UHXIQB)](https://codecov.io/gh/hidechae/gost)
+
 # gost
 
 Generate golang struct definitions from mysql table schema.
