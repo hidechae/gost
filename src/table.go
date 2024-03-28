@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	pluralize "github.com/gertd/go-pluralize"
+	"github.com/gertd/go-pluralize"
 	"github.com/iancoleman/strcase"
 )
 

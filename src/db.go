@@ -16,9 +16,9 @@ type MySQLConfig struct {
 	Encoding string
 }
 
-// Get DSN string
+// GetDSN
 // ex) iam:pass@tcp(127.0.0.1:3306)/db?charset=utf8mb4&parseTime=True&loc=Local
-func (c MySQLConfig) GetDsn() string {
+func (c MySQLConfig) GetDSN() string {
 	return fmt.Sprintf(
 		"%s:%s@tcp(%s:%d)/%s?charset%s&parseTime=True&loc=Local",
 		c.User,
@@ -31,7 +31,7 @@ func (c MySQLConfig) GetDsn() string {
 }
 
 func NewGormHandler(c MySQLConfig, debug bool) (*gorm.DB, error) {
-	handler, err := gorm.Open(mysql.Open(c.GetDsn()), &gorm.Config{})
+	handler, err := gorm.Open(mysql.Open(c.GetDSN()), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}

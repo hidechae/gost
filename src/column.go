@@ -1,7 +1,6 @@
 package src
 
 import (
-	"errors"
 	"fmt"
 	"regexp"
 
@@ -86,7 +85,7 @@ func (c *Column) GetGolangDataType() (string, error) {
 		t = "time.Time"
 
 	default:
-		err := errors.New(fmt.Sprintf("unknown data type `%s` for %s:%s", c.DataType, c.TableName, c.ColumnName))
+		err := fmt.Errorf(fmt.Sprintf("unknown data type `%s` for %s:%s", c.DataType, c.TableName, c.ColumnName))
 		return "", err
 	}
 

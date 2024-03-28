@@ -56,13 +56,13 @@ func init() {
 	rootCmd.PersistentFlags().StringP("encoding", "", "utf8mb4", "Encoding")
 	rootCmd.PersistentFlags().StringP("table", "t", "%", "table name")
 
-	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
-	viper.BindPFlag("host", rootCmd.PersistentFlags().Lookup("host"))
-	viper.BindPFlag("port", rootCmd.PersistentFlags().Lookup("port"))
-	viper.BindPFlag("password", rootCmd.PersistentFlags().Lookup("password"))
-	viper.BindPFlag("database", rootCmd.PersistentFlags().Lookup("database"))
-	viper.BindPFlag("encoding", rootCmd.PersistentFlags().Lookup("encoding"))
-	viper.BindPFlag("table", rootCmd.PersistentFlags().Lookup("table"))
+	_ = viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
+	_ = viper.BindPFlag("host", rootCmd.PersistentFlags().Lookup("host"))
+	_ = viper.BindPFlag("port", rootCmd.PersistentFlags().Lookup("port"))
+	_ = viper.BindPFlag("password", rootCmd.PersistentFlags().Lookup("password"))
+	_ = viper.BindPFlag("database", rootCmd.PersistentFlags().Lookup("database"))
+	_ = viper.BindPFlag("encoding", rootCmd.PersistentFlags().Lookup("encoding"))
+	_ = viper.BindPFlag("table", rootCmd.PersistentFlags().Lookup("table"))
 }
 
 type Flags struct {
