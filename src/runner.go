@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"gorm.io/gorm"
 )
 
 func Parse(c MySQLConfig, db string, tableHint string) ([]Table, error) {
@@ -13,7 +14,9 @@ func Parse(c MySQLConfig, db string, tableHint string) ([]Table, error) {
 	}
 
 	var tables []Table
-	h.Preload("Columns", fmt.Sprintf("table_schema = '%s'", db)).
+	h.Preload("Columns", func(db *gorm.DB) *gorm.DB {
+		return db.Order("ordinal_position")
+	}).
 		Where(fmt.Sprintf("table_schema = '%s' and table_name like '%s'", db, tableHint)).
 		Find(&tables)
 
