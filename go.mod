@@ -3,7 +3,8 @@ module github.com/hidechae/gost
 go 1.22.1
 
 require (
-	github.com/gertd/go-pluralize v0.1.7
+	github.com/gertd/go-pluralize v0.2.1
+	github.com/google/go-cmp v0.6.0
 	github.com/iancoleman/strcase v0.1.3
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/viper v1.7.0
@@ -14,7 +15,6 @@ require (
 require (
 	github.com/fsnotify/fsnotify v1.4.7 // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
