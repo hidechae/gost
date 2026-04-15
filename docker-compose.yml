@@ -11,7 +11,7 @@ services:
     volumes:
       - ./docker/mysql/init:/docker-entrypoint-initdb.d
   dockerize:
-    image: jwilder/dockerize:0.6.0
+    image: jwilder/dockerize:v0.11.0
     profiles:
       - dockerize
 volumes:
