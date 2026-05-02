@@ -33,8 +33,8 @@ jobs:
           go mod download
       - name: Set up databases
         run: |
-          docker-compose up -d
-          docker-compose --profile dockerize run --rm dockerize dockerize -wait tcp://mysql:3306 -timeout 60s
+          docker compose up -d
+          docker compose --profile dockerize run --rm dockerize dockerize -wait tcp://mysql:3306 -timeout 60s
         env:
           TZ: Asia/Tokyo
       - name: Run unit tests
