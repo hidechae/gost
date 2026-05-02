@@ -85,7 +85,7 @@ func (c *Column) GetGolangDataType() (string, error) {
 		t = "time.Time"
 
 	default:
-		err := fmt.Errorf(fmt.Sprintf("unknown data type `%s` for %s:%s", c.DataType, c.TableName, c.ColumnName))
+		err := fmt.Errorf("unknown data type `%s` for %s:%s", c.DataType, c.TableName, c.ColumnName)
 		return "", err
 	}
 
