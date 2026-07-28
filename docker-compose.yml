@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql:9.7.1
+    image: mysql:9.7.2
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: test_db
